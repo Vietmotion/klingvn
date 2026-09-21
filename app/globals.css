@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f7f8;
+  --foreground: #121417;
+  --surface: #ffffff;
+  --surface-muted: #edf1f4;
+  --border: #dbe2e8;
+  --ring: #1f2937;
+  --accent: #0f172a;
+  --accent-foreground: #f8fafc;
+}
+
+.dark {
+  --background: #0f1216;
+  --foreground: #f2f5f7;
+  --surface: #171b20;
+  --surface-muted: #1e242c;
+  --border: #2a3441;
+  --ring: #d1d9e0;
+  --accent: #f8fafc;
+  --accent-foreground: #0f172a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+a,
+button {
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease,
+    opacity 160ms ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
