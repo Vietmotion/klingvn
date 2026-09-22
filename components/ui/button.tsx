@@ -22,7 +22,7 @@ export function Button({ href, children, className, variant = "primary" }: Butto
     <Link
       href={href}
       className={cn(
-        "inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-semibold",
+        "inline-flex h-11 w-fit items-center justify-center rounded-full px-4 text-sm font-semibold",
         variantMap[variant],
         className,
       )}

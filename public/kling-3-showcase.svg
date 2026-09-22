@@ -1,0 +1,46 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="102" y1="68" x2="1802" y2="1042" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1B2431"/>
+      <stop offset="0.52" stop-color="#2E1F1A"/>
+      <stop offset="1" stop-color="#12141B"/>
+    </linearGradient>
+    <radialGradient id="a" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(460 730) rotate(-7.6) scale(480 330)">
+      <stop stop-color="#F9C58A" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#F9C58A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1340 300) rotate(22) scale(520 360)">
+      <stop stop-color="#D7E7F7" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#D7E7F7" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glass" x1="320" y1="900" x2="1570" y2="960" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B0F15" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#12202D" stop-opacity="0.75"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#a)"/>
+  <rect width="1920" height="1080" fill="url(#b)"/>
+
+  <g opacity="0.28" stroke="#E5E7EB" stroke-width="1">
+    <path d="M0 180H1920"/>
+    <path d="M0 360H1920"/>
+    <path d="M0 540H1920"/>
+    <path d="M0 720H1920"/>
+    <path d="M0 900H1920"/>
+    <path d="M320 0V1080"/>
+    <path d="M640 0V1080"/>
+    <path d="M960 0V1080"/>
+    <path d="M1280 0V1080"/>
+    <path d="M1600 0V1080"/>
+  </g>
+
+  <rect x="260" y="830" width="1400" height="132" rx="20" fill="url(#glass)" stroke="#2A3445"/>
+  <rect x="286" y="858" width="140" height="76" rx="12" fill="#2A4C73"/>
+  <text x="356" y="904" text-anchor="middle" fill="#DEEAF8" font-size="36" font-family="Arial, sans-serif">Kling 3.0</text>
+
+  <text x="470" y="905" fill="#F5F7FA" font-size="42" font-family="Arial, sans-serif">
+    Cinematic multimodal generation for advanced story workflows
+  </text>
+</svg>
