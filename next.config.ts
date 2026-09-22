@@ -1,7 +1,5 @@
 import type { NextConfig } from "next";
 
-const isGithubActions = process.env.GITHUB_ACTIONS === "true";
-
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   turbopack: {
@@ -12,8 +10,6 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: isGithubActions ? "/klingvn" : "",
-  assetPrefix: isGithubActions ? "/klingvn/" : undefined,
 };
 
 export default nextConfig;
