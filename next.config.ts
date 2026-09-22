@@ -4,6 +4,9 @@ const isGithubActions = process.env.GITHUB_ACTIONS === "true";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  turbopack: {
+    root: process.cwd(),
+  },
   output: "export",
   trailingSlash: true,
   images: {
