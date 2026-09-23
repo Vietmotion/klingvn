@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Navigation } from "@/components/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
+import klingLogo from "../img/Kling-Logo.svg";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,8 +16,13 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur">
       <Container>
         <div className="flex h-16 items-center justify-between gap-4">
-          <Link href="/" className="text-base font-semibold tracking-tight">
-            Kling AI Vietnam
+          <Link href="/" className="inline-flex items-center" aria-label="Kling AI Vietnam">
+            <Image
+              src={klingLogo}
+              alt="Kling AI Vietnam"
+              priority
+              className="brand-logo h-8 w-auto"
+            />
           </Link>
 
           <div className="hidden items-center gap-2 lg:flex">

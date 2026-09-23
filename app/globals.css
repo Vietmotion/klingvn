@@ -55,6 +55,14 @@ button {
     opacity 160ms ease;
 }
 
+.brand-logo {
+  filter: brightness(0);
+}
+
+.dark .brand-logo {
+  filter: brightness(0) invert(1);
+}
+
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
