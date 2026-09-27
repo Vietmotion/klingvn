@@ -1,4 +1,6 @@
-import { Suspense } from "react";
+"use client";
+
+import { Suspense, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { ContactFormAlert } from "@/components/contact-form-alert";
 import { Section } from "@/components/ui/section";
@@ -7,6 +9,29 @@ const inputBaseClass =
   "mt-2 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring";
 
 export default function ContactPage() {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.redirected) {
+      window.location.assign(response.url);
+      return;
+    }
+
+    if (response.ok) {
+      window.location.href = "/contact?sent=1";
+      return;
+    }
+
+    window.location.href = "/contact?error=server";
+  };
 
   return (
     <Section className="pt-12 sm:pt-16">
@@ -60,7 +85,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <form className="rounded-lg border border-border bg-background/70 p-6 sm:p-8" action="/api/contact" method="post">
+          <form className="rounded-lg border border-border bg-background/70 p-6 sm:p-8" onSubmit={handleSubmit}>
             <div className="mb-6">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">Gửi tin nhắn</p>
               <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">Để lại thông tin, chúng tôi sẽ phản hồi sớm</h3>
