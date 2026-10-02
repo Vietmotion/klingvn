@@ -278,7 +278,7 @@ export default function PricingPage() {
 
       {activeTab === "video" ? (
         <>
-          <div className="mt-10 overflow-hidden rounded-3xl border border-border bg-surface">
+          <div className="mt-10 overflow-hidden rounded-[var(--radius-box)] border border-border bg-surface">
             <div className="overflow-x-auto">
               <table className="min-w-[980px] w-full border-collapse text-sm">
                 <thead>
@@ -307,7 +307,7 @@ export default function PricingPage() {
             </div>
           </div>
 
-          <div className="mt-8 rounded-3xl border border-border bg-surface p-6 sm:p-8">
+          <div className="mt-8 rounded-[var(--radius-box)] border border-border bg-surface p-6 sm:p-8">
             <h2 className="text-2xl font-semibold tracking-tight">Dịch vụ bổ sung</h2>
             <div className="mt-4 overflow-x-auto">
               <table className="min-w-[640px] w-full border-collapse text-sm">
@@ -339,7 +339,7 @@ export default function PricingPage() {
       ) : null}
 
       {activeTab === "image" ? (
-        <div className="mt-10 overflow-hidden rounded-3xl border border-border bg-surface">
+        <div className="mt-10 overflow-hidden rounded-[var(--radius-box)] border border-border bg-surface">
           <div className="overflow-x-auto">
             <table className="min-w-[760px] w-full border-collapse text-sm">
               <thead>

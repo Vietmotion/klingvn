@@ -62,7 +62,7 @@ export default function Home() {
       </Section>
 
       <Section id="products">
-        <div className="rounded-2xl bg-[#060708] px-4 py-12 text-white sm:px-8 sm:py-16 lg:px-12">
+        <div className="rounded-[var(--radius-box)] bg-[#060708] px-4 py-12 text-white sm:px-8 sm:py-16 lg:px-12">
           <div className="mx-auto max-w-5xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/60">Products</p>
             <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
@@ -121,7 +121,7 @@ export default function Home() {
           </div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <article className="group flex rounded-2xl border border-transparent bg-surface-muted p-8 transition-colors duration-200 hover:border-border hover:bg-surface sm:p-10 lg:min-h-[24rem] lg:flex-col">
+            <article className="group flex rounded-[var(--radius-box)] border border-transparent bg-surface-muted p-8 transition-colors duration-200 hover:border-border hover:bg-surface sm:p-10 lg:min-h-[24rem] lg:flex-col">
               <h3 className="text-3xl font-medium tracking-tight sm:text-4xl">API Service</h3>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
                 For Developers &amp; Enterprises. Integrate leading image and video generation into your products and
@@ -132,7 +132,7 @@ export default function Home() {
               </Button>
             </article>
 
-            <article className="group flex rounded-2xl border border-transparent bg-surface-muted p-8 transition-colors duration-200 hover:border-border hover:bg-surface sm:p-10 lg:min-h-[24rem] lg:flex-col">
+            <article className="group flex rounded-[var(--radius-box)] border border-transparent bg-surface-muted p-8 transition-colors duration-200 hover:border-border hover:bg-surface sm:p-10 lg:min-h-[24rem] lg:flex-col">
               <h3 className="text-3xl font-medium tracking-tight sm:text-4xl">Enterprise Plan</h3>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
                 For Enterprise Teams. No API integration needed. Use Kling&apos;s creative tools to scale content
@@ -161,7 +161,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="rounded-xl border border-border bg-surface p-6">
+          <div className="rounded-[var(--radius-box)] border border-border bg-surface p-6">
             <div className="mb-3 aspect-[16/10] w-full rounded-md border border-dashed border-border bg-surface-muted" />
             <p className="text-sm text-foreground/70">Pricing preview placeholder</p>
             {/* Future support: API pricing calculator, discount tiers, enterprise pricing, model-based pricing. */}

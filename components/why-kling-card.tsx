@@ -13,7 +13,7 @@ export function WhyKlingCard({ title, shortText, longText }: WhyKlingCardProps) 
 
   return (
     <article
-      className={`flex flex-col rounded-lg border border-border bg-surface p-5 ${expanded ? "md:h-[43rem]" : ""}`}
+      className={`flex flex-col rounded-[var(--radius-box)] border border-border bg-surface p-5 ${expanded ? "md:h-[43rem]" : ""}`}
     >
       <div className="mb-4 aspect-video w-full rounded-md border border-dashed border-border bg-surface-muted" aria-hidden="true" />
       <h3 className="min-h-[6.5rem] text-lg font-semibold">{title}</h3>

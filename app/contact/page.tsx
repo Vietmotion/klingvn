@@ -35,7 +35,7 @@ export default function ContactPage() {
 
   return (
     <Section className="pt-12 sm:pt-16">
-      <div className="overflow-hidden rounded-xl border border-border bg-surface">
+      <div className="overflow-hidden rounded-[var(--radius-box)] border border-border bg-surface">
         <div className="relative min-h-[20rem] overflow-hidden bg-gradient-to-br from-foreground/6 via-surface to-accent/10 p-6 sm:min-h-[24rem] sm:p-8">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_35%)] opacity-70" />
           <div className="relative flex h-full min-h-[20rem] flex-col justify-end sm:min-h-[24rem]">

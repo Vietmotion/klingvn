@@ -12,19 +12,19 @@ export default function LearnPage() {
       </div>
 
       <div className="mt-10 grid gap-5 md:grid-cols-2">
-        <article className="rounded-3xl border border-border bg-surface p-6">
+        <article className="rounded-[var(--radius-box)] border border-border bg-surface p-6">
           <h2 className="text-xl font-semibold">Tutorials</h2>
           <p className="mt-3 text-sm text-foreground/70">Placeholder for practical step-by-step tutorials.</p>
         </article>
-        <article className="rounded-3xl border border-border bg-surface p-6">
+        <article className="rounded-[var(--radius-box)] border border-border bg-surface p-6">
           <h2 className="text-xl font-semibold">Guides</h2>
           <p className="mt-3 text-sm text-foreground/70">Placeholder for best-practice guides by role and workflow.</p>
         </article>
-        <article className="rounded-3xl border border-border bg-surface p-6">
+        <article className="rounded-[var(--radius-box)] border border-border bg-surface p-6">
           <h2 className="text-xl font-semibold">News</h2>
           <p className="mt-3 text-sm text-foreground/70">Placeholder for launch updates and official announcements.</p>
         </article>
-        <article className="rounded-3xl border border-border bg-surface p-6">
+        <article className="rounded-[var(--radius-box)] border border-border bg-surface p-6">
           <h2 className="text-xl font-semibold">Case Studies</h2>
           <p className="mt-3 text-sm text-foreground/70">Placeholder for team and enterprise implementation stories.</p>
         </article>

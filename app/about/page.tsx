@@ -22,7 +22,7 @@ export default function AboutPage() {
           việc quản lý, hạch toán và tối ưu chi phí đầu vào.
         </p>
 
-        <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-surface">
+        <div className="mt-8 overflow-hidden rounded-[var(--radius-box)] border border-border bg-surface">
           <Image
             src={certificateImage}
             alt="Chung nhan doi tac phan phoi chinh thuc KlingAI cua Mighty Stone"
@@ -31,7 +31,7 @@ export default function AboutPage() {
           />
         </div>
 
-        <div className="mx-auto mt-6 w-full max-w-[220px] overflow-hidden rounded-2xl border border-border bg-surface p-2">
+        <div className="mx-auto mt-6 w-full max-w-[220px] overflow-hidden rounded-[var(--radius-box)] border border-border bg-surface p-2">
           <Image src={certificateQrImage} alt="QR code certificate" className="h-auto w-full" />
         </div>
       </div>

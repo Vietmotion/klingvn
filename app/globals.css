@@ -9,6 +9,7 @@
   --ring: #1f2937;
   --accent: #0f172a;
   --accent-foreground: #f8fafc;
+  --radius-box: 1.25rem;
 }
 
 .dark {
@@ -20,6 +21,7 @@
   --ring: #d1d9e0;
   --accent: #f8fafc;
   --accent-foreground: #0f172a;
+  --radius-box: 1.25rem;
 }
 
 @theme inline {

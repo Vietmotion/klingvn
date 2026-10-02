@@ -61,6 +61,20 @@ Implementation pattern:
 - Use smaller radius tokens for cards/panels than hero/visual blocks.
 - Keep button radius independent from container radius.
 
+### 5) GitHub to Vercel delivery rule
+
+Rule:
+- Source updates are pushed to GitHub.
+- Vercel watches the GitHub repo and handles production deploys automatically.
+
+Why:
+- Keeps code ownership and deployment responsibilities separate.
+- Avoids confusion about a separate "push to Vercel" step.
+
+Implementation pattern:
+- Commit and push to the GitHub repo as the source of truth.
+- Redeploy from Vercel only when a manual refresh of production is needed.
+
 ## Timeline
 
 ## 2026-09-22
@@ -80,6 +94,19 @@ Implementation pattern:
 - Compact-by-default details pattern for long copy.
 - Content-wrapped pill button sizing.
 - Reduced-radius container language for trust and professionalism.
+
+## 2026-09-27
+
+### Workflow clarified
+
+- Confirmed the contact form deploy flow: GitHub remains the code push target, and Vercel auto-deploys from GitHub.
+- Documented the rule in the dev log so future "push" references map to the same simple workflow.
+
+### Pricing reference clarified
+
+- This dev log can also be used as a practical benchmark to evaluate and price the website work over time.
+- Future builds or follow-up sites can be compared against this log to build a more consistent and reasonable price list.
+- The goal is to keep pricing grounded in actual scope, polish, deployment effort, and maintenance expectations.
 
 ## Next additions (when relevant)
 
