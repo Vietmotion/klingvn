@@ -44,12 +44,12 @@ const videoSlides = [
   {
     title: "Narrative Upgrade for Seamless Storytelling",
     description: "Native 3.0 generation with precise control over every narrative beat, turning a spark of inspiration into a complete story.",
-    src: "/footages/footage-01.mp4",
+    src: "/footages/worker-finds-something_cut.mp4",
   },
   {
     title: "Diverse Content for Creative Freedom",
     description: "Greater creative freedom, with no limits to your imagination.",
-    src: "/footages/footage-01.mp4",
+    src: "/footages/footage-02-co-gai-dan-toc.mp4",
   },
 ] as const;
 
@@ -251,7 +251,26 @@ export default function ProductsPage() {
       <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {productKeys.map((product) => (
           <div key={product.title} className="rounded-[var(--radius-box)] border border-border bg-surface p-4 shadow-sm sm:p-5">
-            <div className="aspect-[16/10] rounded-lg border border-dashed border-border bg-surface-muted" />
+            <div
+              className={`relative aspect-[16/10] overflow-hidden rounded-lg border bg-surface-muted ${product.title === "AI Video" || product.title === "Video Editor" ? "border-border" : "border-dashed border-border"}`}
+            >
+              {product.title === "AI Video" || product.title === "Video Editor" ? (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full object-cover"
+                >
+                  <source
+                    src={product.title === "Video Editor" ? "/footages/market.mp4" : "/footages/worker-finds-something_cut.mp4"}
+                    type="video/mp4"
+                  />
+                </video>
+              ) : null}
+            </div>
             <h2 className="mt-4 text-2xl font-semibold tracking-tight">{product.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-foreground/72">{product.description}</p>
           </div>

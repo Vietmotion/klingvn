@@ -2,25 +2,28 @@ import { CTASection } from "@/components/cta-section";
 import { WhyKlingCard } from "@/components/why-kling-card";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
-import Image from "next/image";
+import { HeroVideo } from "@/components/hero-video";
 
 export default function Home() {
   const whyKlingFeatures = [
     {
       title: "All-in-One Reference: Enhanced Consistency, More Responsive and Dynamic",
       shortText: "Lock character and scene consistency across complex multi-shot generation.",
+      mediaSources: ["/footages/mountain-guy-01.mp4", "/footages/mountain-guy-02.mp4"],
       longText:
         "VIDEO 3.0 introduces a powerful new All-in-One Reference capability. It supports uploading or recording a 3-8s character video, or providing multiple reference images to precisely lock in an element. Building on image-to-video generation, you can further anchor specific elements by adding multi-image or video-based elements for secondary stabilization. The system also supports extracting original audio from video or assigning a matched voice to static characters-combined with precise lip-sync driving-so every character you create can perform in their true voice.",
     },
     {
       title: "Omni Narrative: 15s Multi-Shot Control, Cinematic in One Click",
       shortText: "Direct cinematic pacing and shot-level narrative structure in one flow.",
+      mediaSources: ["/footages/footage-02-co-gai-dan-toc.mp4"],
       longText:
         "While preserving flexible duration control, VIDEO 3.0 introduces native storyboard capabilities and extends single-generation length to 15 seconds. You can precisely orchestrate each shot-defining duration, framing, camera movement, and narrative intent at the shot level. With a single generation, craft a rhythmically structured, multi-shot sequence-where every second is purposefully composed to serve your creative vision.",
     },
     {
       title: "Upgraded Native Audio Output with Character Referencing & More Languages",
       shortText: "Map voice, text and characters more precisely across multilingual scenes.",
+      mediaSources: ["/footages/footage-01.mp4"],
       longText:
         "With a major upgrade to Native Audio, the system achieves precise mapping between text and on-screen characters. In multi-character scenes, you decide exactly who speaks-eliminating ambiguity in speaker attribution. It supports multiple languages, regional dialects, and authentic accents, even seamless code-switching within a single scene.",
     },
@@ -30,13 +33,7 @@ export default function Home() {
     <>
       <Section className="relative overflow-hidden py-0" containerClassName="max-w-none px-0">
         <div className="relative isolate min-h-[76vh] sm:min-h-[82vh]">
-          <Image
-            src="/hero-placeholder.svg"
-            alt="Kling hero background placeholder"
-            fill
-            priority
-            className="object-cover"
-          />
+          <HeroVideo />
           <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
 
           <div className="relative z-10 mx-auto flex min-h-[76vh] w-full max-w-5xl items-center justify-center px-4 py-20 text-center sm:min-h-[82vh] sm:px-6 lg:px-8">
@@ -76,12 +73,27 @@ export default function Home() {
 
           <div className="mx-auto mt-10 max-w-6xl overflow-hidden rounded-lg border border-white/10 bg-white/5">
             <div className="relative aspect-[16/9] w-full">
-              <Image
-                src="/kling-3-showcase.svg"
-                alt="Kling 3.0 showcase placeholder"
-                fill
-                className="object-cover"
-              />
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                poster="/kling-3-showcase.svg"
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full object-cover"
+              >
+                <source src="/footages/market.mp4" type="video/mp4" />
+              </video>
+              <div
+                aria-hidden="true"
+                className="absolute bottom-[12%] left-1/2 flex w-max max-w-[calc(100%-2rem)] -translate-x-1/2 items-center gap-3 rounded-lg border border-white/10 bg-black/65 p-2.5 text-left text-white shadow-lg backdrop-blur-sm sm:gap-4 sm:p-3"
+              >
+                <span className="shrink-0 rounded bg-[#2a4c73] px-2 py-1.5 text-xs sm:text-sm">Kling 3.0</span>
+                <span className="text-xs leading-snug sm:text-base">
+                  Cinematic multimodal generation for advanced story workflows
+                </span>
+              </div>
             </div>
           </div>
 
@@ -106,6 +118,7 @@ export default function Home() {
               title={feature.title}
               shortText={feature.shortText}
               longText={feature.longText}
+              mediaSources={feature.mediaSources}
             />
           ))}
         </div>
@@ -162,8 +175,19 @@ export default function Home() {
             </div>
           </div>
           <div className="rounded-[var(--radius-box)] border border-border bg-surface p-6">
-            <div className="mb-3 aspect-[16/10] w-full rounded-md border border-dashed border-border bg-surface-muted" />
-            <p className="text-sm text-foreground/70">Pricing preview placeholder</p>
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-border bg-surface-muted">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full object-cover"
+              >
+                <source src="/footages/scientist.mp4" type="video/mp4" />
+              </video>
+            </div>
             {/* Future support: API pricing calculator, discount tiers, enterprise pricing, model-based pricing. */}
           </div>
         </div>

@@ -6,16 +6,37 @@ type WhyKlingCardProps = {
   title: string;
   shortText: string;
   longText: string;
+  mediaSources?: readonly string[];
 };
 
-export function WhyKlingCard({ title, shortText, longText }: WhyKlingCardProps) {
+export function WhyKlingCard({ title, shortText, longText, mediaSources }: WhyKlingCardProps) {
   const [expanded, setExpanded] = useState(false);
+  const [mediaIndex, setMediaIndex] = useState(0);
+  const mediaSrc = mediaSources?.[mediaIndex];
 
   return (
     <article
       className={`flex flex-col rounded-[var(--radius-box)] border border-border bg-surface p-5 ${expanded ? "md:h-[43rem]" : ""}`}
     >
-      <div className="mb-4 aspect-video w-full rounded-md border border-dashed border-border bg-surface-muted" aria-hidden="true" />
+      <div
+        className={`mb-4 aspect-video w-full overflow-hidden rounded-md border bg-surface-muted ${mediaSrc ? "border-border" : "border-dashed border-border"}`}
+        aria-hidden="true"
+      >
+        {mediaSrc && mediaSources?.length ? (
+          <video
+            key={mediaSrc}
+            autoPlay
+            loop={mediaSources.length === 1}
+            muted
+            playsInline
+            preload="metadata"
+            onEnded={() => setMediaIndex((currentIndex) => (currentIndex + 1) % mediaSources.length)}
+            className="h-full w-full object-cover"
+          >
+            <source src={mediaSrc} type="video/mp4" />
+          </video>
+        ) : null}
+      </div>
       <h3 className="min-h-[6.5rem] text-lg font-semibold">{title}</h3>
       <p className="mt-2 min-h-[5rem] text-sm text-foreground/75">{shortText}</p>
 

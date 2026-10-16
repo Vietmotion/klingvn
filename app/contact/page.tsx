@@ -36,12 +36,23 @@ export default function ContactPage() {
   return (
     <Section className="pt-12 sm:pt-16">
       <div className="overflow-hidden rounded-[var(--radius-box)] border border-border bg-surface">
-        <div className="relative min-h-[20rem] overflow-hidden bg-gradient-to-br from-foreground/6 via-surface to-accent/10 p-6 sm:min-h-[24rem] sm:p-8">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_35%)] opacity-70" />
-          <div className="relative flex h-full min-h-[20rem] flex-col justify-end sm:min-h-[24rem]">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">Contact</p>
-            <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">Contact Kling AI Vietnam</h1>
-            <p className="mt-4 max-w-3xl text-base text-foreground/75 sm:text-lg">
+        <div className="relative min-h-[20rem] overflow-hidden p-6 sm:min-h-[24rem] sm:p-8">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src="/footages/footage-02-co-gai-dan-toc.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
+          <div className="relative z-10 flex h-full min-h-[20rem] flex-col justify-end sm:min-h-[24rem]">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/75">Contact</p>
+            <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">Contact Kling AI Vietnam</h1>
+            <p className="mt-4 max-w-3xl text-base text-white/85 sm:text-lg">
               Share your goals and our team will follow up with the right path for your use case.
             </p>
           </div>
