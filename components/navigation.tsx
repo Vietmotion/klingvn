@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/components/language-provider";
 
 export const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Products", href: "/products" },
+  { label: "Trang chủ", en: "Home", href: "/" },
+  { label: "Sản phẩm", en: "Products", href: "/products" },
   { label: "API", href: "/api" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Learn", href: "/learn" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Bảng giá", en: "Pricing", href: "/pricing" },
+  { label: "Tin tức", en: "News", href: "/news" },
+  { label: "Giới thiệu", en: "About", href: "/about" },
+  { label: "Liên hệ", en: "Contact", href: "/contact" },
 ] as const;
 
 type NavigationProps = {
@@ -18,8 +19,10 @@ type NavigationProps = {
 };
 
 export function Navigation({ className, itemClassName, onItemClick }: NavigationProps) {
+  const { language } = useLanguage();
+
   return (
-    <nav className={cn("flex items-center gap-1", className)} aria-label="Primary navigation">
+    <nav className={cn("flex items-center gap-1", className)} aria-label={language === "vi" ? "Điều hướng chính" : "Primary navigation"}>
       {navItems.map((item) => (
         <Link
           key={item.href}
@@ -30,7 +33,7 @@ export function Navigation({ className, itemClassName, onItemClick }: Navigation
           )}
           onClick={onItemClick}
         >
-          {item.label}
+          {"en" in item && language === "en" ? item.en : item.label}
         </Link>
       ))}
     </nav>

@@ -3,12 +3,16 @@
 import { Suspense, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { ContactFormAlert } from "@/components/contact-form-alert";
+import { useLanguage } from "@/components/language-provider";
 import { Section } from "@/components/ui/section";
 
 const inputBaseClass =
   "mt-2 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring";
 
 export default function ContactPage() {
+  const { language } = useLanguage();
+  const isEn = language === "en";
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -50,26 +54,34 @@ export default function ContactPage() {
           </video>
           <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
           <div className="relative z-10 flex h-full min-h-[20rem] flex-col justify-end sm:min-h-[24rem]">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/75">Contact</p>
-            <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">Contact Kling AI Vietnam</h1>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/75">{isEn ? "CONTACT" : "LIÊN HỆ"}</p>
+            <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              {isEn ? "Contact Kling AI Vietnam" : "Liên hệ Kling AI Việt Nam"}
+            </h1>
             <p className="mt-4 max-w-3xl text-base text-white/85 sm:text-lg">
-              Share your goals and our team will follow up with the right path for your use case.
+              {isEn
+                ? "Share your goals and our team will follow up with the right path for your use case."
+                : "Chia sẻ mục tiêu của bạn, đội ngũ sẽ tư vấn giải pháp phù hợp với nhu cầu."}
             </p>
           </div>
         </div>
 
         <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-10">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">Thông tin liên hệ</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">Kết nối trực tiếp với chúng tôi</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">{isEn ? "CONTACT INFORMATION" : "THÔNG TIN LIÊN HỆ"}</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+              {isEn ? "Connect with our team" : "Kết nối trực tiếp với chúng tôi"}
+            </h2>
             <p className="mt-3 text-sm leading-6 text-foreground/70 sm:text-base">
-              Nếu bạn cần tư vấn nhanh, hãy liên hệ theo các kênh bên dưới hoặc bấm nút Zalo để chat ngay.
+              {isEn
+                ? "For quick assistance, reach us through the channels below or use the Zalo button to start a chat."
+                : "Nếu bạn cần tư vấn nhanh, hãy liên hệ theo các kênh bên dưới hoặc bấm nút Zalo để chat ngay."}
             </p>
 
             <div className="mt-6 rounded-lg border border-border bg-background/70 p-5">
               <div className="space-y-5">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">Địa chỉ</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">{isEn ? "ADDRESS" : "ĐỊA CHỈ"}</p>
                   <p className="mt-3 text-sm leading-6 text-foreground/80">5/5 Đ. Số 25, An Khánh, Hồ Chí Minh</p>
                 </div>
 
@@ -83,7 +95,7 @@ export default function ContactPage() {
                 <div className="border-t border-border/70 pt-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">Zalo/WhatsApp</p>
                   <a href="tel:+84938649919" className="mt-3 block text-sm leading-6 text-foreground/80 hover:text-foreground">
-                    +84 938 649 919 (chúng tôi)
+                    +84 938 649 919
                   </a>
                 </div>
               </div>
@@ -91,25 +103,27 @@ export default function ContactPage() {
 
             <div className="mt-6">
               <Button href="https://zalo.me/84938649919" className="rounded-lg px-6">
-                Liên hệ ngay qua Zalo
+                {isEn ? "Chat with us on Zalo" : "Liên hệ ngay qua Zalo"}
               </Button>
             </div>
           </div>
 
           <form className="rounded-lg border border-border bg-background/70 p-6 sm:p-8" onSubmit={handleSubmit}>
             <div className="mb-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">Gửi tin nhắn</p>
-              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">Để lại thông tin, chúng tôi sẽ phản hồi sớm</h3>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">{isEn ? "SEND A MESSAGE" : "GỬI TIN NHẮN"}</p>
+              <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+                {isEn ? "Leave your details and we’ll get back to you soon" : "Để lại thông tin, chúng tôi sẽ phản hồi sớm"}
+              </h3>
             </div>
 
             <div className="grid gap-5 md:grid-cols-2">
               <label className="block text-sm font-medium text-foreground/90">
-                Name
+                {isEn ? "Name" : "Họ tên"}
                 <input type="text" name="name" autoComplete="name" required className={inputBaseClass} />
               </label>
 
               <label className="block text-sm font-medium text-foreground/90">
-                Company
+                {isEn ? "Company" : "Công ty"}
                 <input type="text" name="company" autoComplete="organization" className={inputBaseClass} />
               </label>
 
@@ -119,19 +133,19 @@ export default function ContactPage() {
               </label>
 
               <label className="block text-sm font-medium text-foreground/90">
-                Phone
+                {isEn ? "Phone" : "Số điện thoại"}
                 <input type="tel" name="phone" autoComplete="tel" className={inputBaseClass} />
               </label>
             </div>
 
             <label className="mt-5 block text-sm font-medium text-foreground/90">
-              Message
+              {isEn ? "Message" : "Nội dung"}
               <textarea name="message" rows={5} required className={inputBaseClass} />
             </label>
 
             <div className="mt-6">
               <button type="submit" className="inline-flex h-11 items-center justify-center rounded-lg bg-accent px-5 text-sm font-semibold text-accent-foreground hover:opacity-90">
-                Gửi liên hệ
+                {isEn ? "Send message" : "Gửi liên hệ"}
               </button>
             </div>
 

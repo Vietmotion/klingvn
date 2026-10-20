@@ -7,10 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Navigation } from "@/components/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useLanguage } from "@/components/language-provider";
 import klingLogo from "../img/Kling-Logo.svg";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { language, toggleLanguage } = useLanguage();
+  const switchLanguageLabel = language === "vi" ? "Switch to English" : "Chuyển sang tiếng Việt";
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur">
@@ -32,14 +35,16 @@ export function Header() {
           <div className="hidden items-center gap-2 md:flex">
             <button
               type="button"
+              onClick={toggleLanguage}
               className="rounded-full border border-border bg-surface px-3 py-2 text-xs font-medium text-foreground hover:bg-surface-muted"
-              aria-label="Switch language"
+              aria-label={switchLanguageLabel}
+              title={switchLanguageLabel}
             >
               VN / EN
             </button>
             <ThemeToggle />
             <Button href="/contact" className="h-10 px-4 text-xs sm:text-sm">
-              Get Started
+              {language === "vi" ? "Bắt đầu" : "Get Started"}
             </Button>
           </div>
 
@@ -49,7 +54,7 @@ export function Header() {
             onClick={() => setIsOpen((value) => !value)}
             aria-expanded={isOpen}
             aria-controls="mobile-nav"
-            aria-label="Toggle navigation"
+            aria-label={language === "vi" ? "Mở/đóng điều hướng" : "Toggle navigation"}
           >
             <span className="text-xl leading-none">{isOpen ? "×" : "☰"}</span>
           </button>
@@ -61,14 +66,16 @@ export function Header() {
             <div className="flex items-center gap-2">
               <button
                 type="button"
+                onClick={toggleLanguage}
                 className="rounded-full border border-border bg-surface px-3 py-2 text-xs font-medium text-foreground"
-                aria-label="Switch language"
+                aria-label={switchLanguageLabel}
+                title={switchLanguageLabel}
               >
                 VN / EN
               </button>
               <ThemeToggle />
               <Button href="/contact" className="h-10 px-4 text-xs" variant="secondary">
-                Get Started
+                {language === "vi" ? "Bắt đầu" : "Get Started"}
               </Button>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/components/language-provider";
 
 type WhyKlingCardProps = {
   title: string;
@@ -12,6 +13,7 @@ type WhyKlingCardProps = {
 export function WhyKlingCard({ title, shortText, longText, mediaSources }: WhyKlingCardProps) {
   const [expanded, setExpanded] = useState(false);
   const [mediaIndex, setMediaIndex] = useState(0);
+  const { language } = useLanguage();
   const mediaSrc = mediaSources?.[mediaIndex];
 
   return (
@@ -52,7 +54,7 @@ export function WhyKlingCard({ title, shortText, longText, mediaSources }: WhyKl
         className="mt-6 inline-flex shrink-0 self-start cursor-pointer items-center rounded-full border border-border bg-surface px-4 py-1.5 text-sm font-semibold text-foreground/80 transition-colors hover:border-foreground/35 hover:bg-surface-muted hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
         aria-expanded={expanded}
       >
-        {expanded ? "Collapse" : "Read more"}
+        {expanded ? (language === "vi" ? "Thu gọn" : "Collapse") : language === "vi" ? "Đọc thêm" : "Read more"}
       </button>
     </article>
   );

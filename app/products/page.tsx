@@ -2,54 +2,79 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/components/language-provider";
 import { Section } from "@/components/ui/section";
 
 const productKeys = [
   {
     title: "AI Video",
+    titleVi: "Video AI",
     description:
       "Generate cinematic video from text prompts, reference images, and story-driven briefs with richer scene continuity.",
+    descriptionVi:
+      "Tạo video điện ảnh từ mô tả văn bản, hình ảnh tham chiếu và ý tưởng kể chuyện với sự liền mạch cao hơn giữa các cảnh.",
     highlights: ["Text-to-video", "Image-to-video", "Scene continuity", "Prompt control"],
+    highlightsVi: ["Văn bản thành video", "Hình ảnh thành video", "Liền mạch giữa các cảnh", "Kiểm soát câu lệnh"],
   },
   {
     title: "AI Image",
+    titleVi: "Hình ảnh AI",
     description:
       "Create polished visuals, concept art, and product imagery with strong composition and style control.",
+    descriptionVi:
+      "Tạo hình ảnh hoàn thiện, concept art và hình ảnh sản phẩm với bố cục hài hòa cùng khả năng kiểm soát phong cách.",
     highlights: ["Image generation", "Style variation", "Creative ideation", "Brand visuals"],
+    highlightsVi: ["Tạo hình ảnh", "Biến thể phong cách", "Phát triển ý tưởng", "Hình ảnh thương hiệu"],
   },
   {
     title: "Motion Control",
+    titleVi: "Điều khiển chuyển động",
     description:
       "Shape movement, camera direction, and dynamic pacing to make each shot feel intentional and cinematic.",
+    descriptionVi:
+      "Điều chỉnh chuyển động, hướng camera và nhịp điệu để mỗi cảnh quay có chủ đích và đậm chất điện ảnh.",
     highlights: ["Camera motion", "Shot control", "Pacing", "Cinematic timing"],
+    highlightsVi: ["Chuyển động camera", "Kiểm soát cảnh quay", "Nhịp điệu", "Nhịp phim điện ảnh"],
   },
   {
     title: "Video Editor",
+    titleVi: "Trình chỉnh sửa video",
     description:
       "Refine footage, assemble edits, and streamline production workflows from concept to final output.",
+    descriptionVi:
+      "Tinh chỉnh cảnh quay, dựng video và tối ưu quy trình sản xuất từ ý tưởng đến thành phẩm.",
     highlights: ["Cut & assemble", "Scene refinement", "Workflow simplification", "Publishing-ready output"],
+    highlightsVi: ["Cắt ghép", "Tinh chỉnh cảnh quay", "Đơn giản hóa quy trình", "Sẵn sàng xuất bản"],
   },
 ] as const;
 
 const videoSlides = [
   {
     title: "Audio-Visual Performance for Realistic Results",
+    titleVi: "Trải nghiệm nghe nhìn sống động và chân thực",
     description: "Stable dynamic motions and an immersive audio-visual experience, taking video generation to professional-grade production.",
+    descriptionVi: "Chuyển động ổn định cùng trải nghiệm nghe nhìn sống động, đưa khả năng tạo video đến chất lượng sản xuất chuyên nghiệp.",
     src: "/footages/footage-01.mp4",
   },
   {
     title: "Omni Reference for Greater Creative Control",
+    titleVi: "Omni Reference: Tăng khả năng kiểm soát sáng tạo",
     description: "More reference options and more consistent results, making it easy to recreate creative videos.",
+    descriptionVi: "Thêm lựa chọn tham chiếu, kết quả nhất quán hơn và dễ dàng tái tạo những video sáng tạo.",
     src: "/footages/footage-02.mp4",
   },
   {
     title: "Narrative Upgrade for Seamless Storytelling",
+    titleVi: "Nâng cấp khả năng kể chuyện liền mạch",
     description: "Native 3.0 generation with precise control over every narrative beat, turning a spark of inspiration into a complete story.",
+    descriptionVi: "Tạo nội dung với Native 3.0 và kiểm soát chính xác từng nhịp truyện, biến cảm hứng ban đầu thành câu chuyện hoàn chỉnh.",
     src: "/footages/worker-finds-something_cut.mp4",
   },
   {
     title: "Diverse Content for Creative Freedom",
+    titleVi: "Đa dạng nội dung, tự do sáng tạo",
     description: "Greater creative freedom, with no limits to your imagination.",
+    descriptionVi: "Tự do sáng tạo hơn để trí tưởng tượng không bị giới hạn.",
     src: "/footages/footage-02-co-gai-dan-toc.mp4",
   },
 ] as const;
@@ -220,6 +245,8 @@ const galleryTrackRows = galleryRows.map((row) => [...row, ...row]);
 export default function ProductsPage() {
   const [videoIndex, setVideoIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<(typeof imageGallery)[number] | null>(null);
+  const { language } = useLanguage();
+  const isEn = language === "en";
   const currentVideo = videoSlides[videoIndex];
 
   useEffect(() => {
@@ -250,11 +277,14 @@ export default function ProductsPage() {
   return (
     <Section className="pt-12 sm:pt-16">
       <div className="max-w-4xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">Products</p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Kling product ecosystem</h1>
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">{isEn ? "PRODUCTS" : "SẢN PHẨM"}</p>
+        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+          {isEn ? "The Kling product ecosystem" : "Hệ sinh thái sản phẩm Kling"}
+        </h1>
         <p className="mt-4 text-base text-foreground/75 sm:text-lg">
-          Core product pillars designed for modern creation workflows: AI video generation, image creation,
-          motion control, and editing tools built for creators and teams.
+          {isEn
+            ? "Core product pillars for modern creative workflows: AI video and image generation, motion control, and editing tools for creators and teams."
+            : "Các sản phẩm cốt lõi cho quy trình sáng tạo hiện đại: tạo video và hình ảnh bằng AI, điều khiển chuyển động cùng công cụ chỉnh sửa dành cho nhà sáng tạo và đội nhóm."}
         </p>
       </div>
 
@@ -282,15 +312,15 @@ export default function ProductsPage() {
               ) : product.title === "AI Image" ? (
                 <Image
                   src="/img-gen/product/img14.png"
-                  alt="A woman in a red áo dài posing with a cat"
+                  alt={isEn ? "A woman in a red áo dài posing with a cat" : "Người phụ nữ mặc áo dài đỏ tạo dáng cùng chú mèo"}
                   fill
                   sizes="(max-width: 768px) 100vw, 25vw"
                   className="object-cover object-[center_42%]"
                 />
               ) : null}
             </div>
-            <h2 className="mt-4 text-2xl font-semibold tracking-tight">{product.title}</h2>
-            <p className="mt-2 text-sm leading-relaxed text-foreground/72">{product.description}</p>
+            <h2 className="mt-4 text-2xl font-semibold tracking-tight">{isEn ? product.title : product.titleVi}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/72">{isEn ? product.description : product.descriptionVi}</p>
           </div>
         ))}
       </div>
@@ -316,7 +346,7 @@ export default function ProductsPage() {
                 <div className="absolute bottom-6 right-6 z-30 flex items-center gap-3">
                   <button
                     type="button"
-                    aria-label="Previous slide"
+                    aria-label={isEn ? "Previous slide" : "Trang chiếu trước"}
                     onClick={handlePrev}
                     className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0d1b2a]/80 shadow-[0_0_0_1px_rgba(255,255,255,0.08)] transition hover:bg-[#122334]"
                   >
@@ -326,7 +356,7 @@ export default function ProductsPage() {
                   </button>
                   <button
                     type="button"
-                    aria-label="Next slide"
+                    aria-label={isEn ? "Next slide" : "Trang chiếu tiếp theo"}
                     onClick={handleNext}
                     className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0d1b2a]/80 shadow-[0_0_0_1px_rgba(255,255,255,0.08)] transition hover:bg-[#122334]"
                   >
@@ -339,8 +369,8 @@ export default function ProductsPage() {
                 <div className="absolute inset-x-0 bottom-0 z-20 p-4 sm:p-6">
                   <div className="flex items-end justify-between gap-4">
                     <div className="max-w-2xl">
-                      <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">{currentVideo.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-white/75 sm:text-base">{currentVideo.description}</p>
+                      <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">{isEn ? currentVideo.title : currentVideo.titleVi}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-white/75 sm:text-base">{isEn ? currentVideo.description : currentVideo.descriptionVi}</p>
                     </div>
                   </div>
                 </div>
@@ -349,11 +379,14 @@ export default function ProductsPage() {
 
             <div className="flex flex-col gap-4 pb-2 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-2xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">AI Video</p>
-                <h3 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Kling v4 brings the next era of AI video</h3>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">{isEn ? "AI VIDEO" : "VIDEO AI"}</p>
+                <h3 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
+                  {isEn ? "Kling v4 brings the next era of AI video" : "Kling v4 mở ra kỷ nguyên video AI mới"}
+                </h3>
                 <p className="mt-3 text-base leading-relaxed text-foreground/72">
-                  The latest Kling update brings sharper motion, richer detail, and more cinematic storytelling for
-                  creative teams and solo creators.
+                  {isEn
+                    ? "The latest Kling update brings sharper motion, richer detail, and more cinematic storytelling for creative teams and solo creators."
+                    : "Bản cập nhật Kling mới nhất mang đến chuyển động sắc nét, chi tiết phong phú và khả năng kể chuyện điện ảnh hơn cho đội ngũ sáng tạo và nhà sáng tạo độc lập."}
                 </p>
               </div>
 
@@ -363,7 +396,7 @@ export default function ProductsPage() {
                 rel="noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-border bg-surface-muted px-5 py-2.5 text-sm font-medium text-foreground transition hover:border-foreground/30 hover:bg-surface"
               >
-                Create now
+                {isEn ? "Create now" : "Sáng tạo ngay"}
               </a>
             </div>
 
@@ -372,7 +405,7 @@ export default function ProductsPage() {
                 <button
                   key={slide.title}
                   type="button"
-                  aria-label={`Go to slide ${index + 1}`}
+                  aria-label={`${isEn ? "Go to slide" : "Đến trang chiếu"} ${index + 1}`}
                   onClick={() => setVideoIndex(index)}
                   className={`h-2.5 rounded-full transition-all ${
                     index === videoIndex ? "w-8 bg-foreground" : "w-2.5 bg-foreground/30 hover:bg-foreground/60"
@@ -390,28 +423,34 @@ export default function ProductsPage() {
             <div className="mt-10 grid w-full gap-8 text-left md:grid-cols-3">
               <div className="space-y-2">
                 <h4 className="text-[clamp(1.1rem,2vw,2rem)] font-semibold tracking-tight text-white">
-                  Enhanced Cinematic Storytelling
+                  {isEn ? "Enhanced Cinematic Storytelling" : "Kể chuyện điện ảnh nâng cao"}
                 </h4>
                 <p className="text-base leading-relaxed text-foreground/75">
-                  Understands cinematic language with precision, giving every still image the narrative power of film.
+                  {isEn
+                    ? "Understands cinematic language with precision, giving every still image the narrative power of film."
+                    : "Thấu hiểu ngôn ngữ điện ảnh để mỗi hình ảnh tĩnh đều có sức kể chuyện như một thước phim."}
                 </p>
               </div>
 
               <div className="space-y-2">
                 <h4 className="text-[clamp(1.1rem,2vw,2rem)] font-semibold tracking-tight text-white">
-                  Native 4K Ultra-HD Generation
+                  {isEn ? "Native 4K Ultra-HD Generation" : "Tạo hình ảnh 4K Ultra-HD gốc"}
                 </h4>
                 <p className="text-base leading-relaxed text-foreground/75">
-                  Generates stunning native 4K visuals with fine textures and sharp, lifelike details.
+                  {isEn
+                    ? "Generates stunning native 4K visuals with fine textures and sharp, lifelike details."
+                    : "Tạo hình ảnh 4K gốc ấn tượng với chất liệu tinh tế và chi tiết sắc nét, chân thực."}
                 </p>
               </div>
 
               <div className="space-y-2">
                 <h4 className="text-[clamp(1.1rem,2vw,2rem)] font-semibold tracking-tight text-white">
-                  New Series Image Generation
+                  {isEn ? "New Series Image Generation" : "Tạo chuỗi hình ảnh mới"}
                 </h4>
                 <p className="text-base leading-relaxed text-foreground/75">
-                  Supports multiple ways to generate image series, with coherent storytelling and a consistent visual style.
+                  {isEn
+                    ? "Supports multiple ways to generate image series, with coherent storytelling and a consistent visual style."
+                    : "Hỗ trợ nhiều cách tạo chuỗi hình ảnh với câu chuyện liền mạch và phong cách hình ảnh nhất quán."}
                 </p>
               </div>
             </div>
@@ -425,7 +464,7 @@ export default function ProductsPage() {
                     <button
                       key={`${item.title}-${rowIndex}-${index}`}
                       type="button"
-                      aria-label={`Preview ${item.title}`}
+                      aria-label={`${isEn ? "Preview" : "Xem trước"} ${item.title}`}
                       aria-haspopup="dialog"
                       onClick={() => setSelectedImage(item)}
                       className="group relative h-[220px] shrink-0 overflow-hidden rounded-[4px] border border-white/10 bg-black/40 p-0 text-left"
@@ -476,7 +515,7 @@ export default function ProductsPage() {
               type="button"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-transparent px-5 py-2.5 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/5"
             >
-              Try Now
+              {isEn ? "Try Now" : "Dùng thử ngay"}
               <span aria-hidden="true">→</span>
             </button>
           </div>
@@ -485,7 +524,7 @@ export default function ProductsPage() {
             <div
               role="dialog"
               aria-modal="true"
-              aria-label={`${selectedImage.title} preview`}
+              aria-label={`${selectedImage.title} ${isEn ? "preview" : "xem trước"}`}
               className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm sm:p-8"
               onClick={(event) => {
                 if (event.target === event.currentTarget) setSelectedImage(null);
@@ -493,7 +532,7 @@ export default function ProductsPage() {
             >
               <button
                 type="button"
-                aria-label="Close image preview"
+                aria-label={isEn ? "Close image preview" : "Đóng xem trước hình ảnh"}
                 onClick={() => setSelectedImage(null)}
                 className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/60 text-2xl text-white transition hover:bg-white/15"
               >
@@ -521,12 +560,12 @@ export default function ProductsPage() {
                 <div className={`${product.title === "Motion Control" ? "aspect-video" : "aspect-[16/10]"} rounded-lg border border-dashed border-border bg-surface-muted`} />
 
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">Product</p>
-                  <h3 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{product.title}</h3>
-                  <p className="mt-4 text-base leading-relaxed text-foreground/72">{product.description}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">{isEn ? "PRODUCT" : "SẢN PHẨM"}</p>
+                  <h3 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{isEn ? product.title : product.titleVi}</h3>
+                  <p className="mt-4 text-base leading-relaxed text-foreground/72">{isEn ? product.description : product.descriptionVi}</p>
 
                   <ul className="mt-5 grid gap-2 text-sm text-foreground/75 sm:grid-cols-2">
-                    {product.highlights.map((highlight) => (
+                    {(isEn ? product.highlights : product.highlightsVi).map((highlight) => (
                       <li key={highlight} className="flex items-center gap-2">
                         <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
                         {highlight}

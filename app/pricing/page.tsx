@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/components/language-provider";
 import { Section } from "@/components/ui/section";
 
 const CNY_TO_USD = 0.14;
@@ -19,6 +20,45 @@ function perRequestPrice(points: number): string {
 
 function perFiveSecondPrice(points: number): string {
   return `${points} điểm (USD ${toUsd(points)})/5 giây`;
+}
+
+function localizedLabel(value: string, isEn: boolean): string {
+  if (!isEn) return value;
+
+  const translations: Record<string, string> = {
+    "Theo giây": "Per second",
+    "Theo lượt": "Per request",
+    "Mỗi 5 giây": "Per 5 seconds",
+    "Có âm thanh": "With audio",
+    "Không âm thanh": "Without audio",
+    "Có âm thanh x chưa chỉ định giọng": "With audio, no voice specified",
+    "Có âm thanh x có chỉ định giọng": "With audio, voice specified",
+    "Điều khiển chuyển động": "Motion control",
+    "Không video tham chiếu x không âm thanh": "No reference video, no audio",
+    "Không video tham chiếu x có âm thanh": "No reference video, with audio",
+    "Có video tham chiếu x không âm thanh": "With reference video, no audio",
+    "Không video tham chiếu": "No reference video",
+    "Có video tham chiếu": "With reference video",
+    "Văn bản thành ảnh, ảnh thành ảnh": "Text-to-image, image-to-image",
+    "Văn bản thành ảnh": "Text-to-image",
+    "Ảnh thành ảnh": "Image-to-image",
+    "Tham chiếu nhiều ảnh": "Multi-image reference",
+    "Bổ toàn thể chủ thể": "Subject completion",
+    "Mở rộng ảnh": "Image expansion",
+    "Công cụ chung": "General tools",
+  };
+
+  return translations[value] ?? value;
+}
+
+function localizedPrice(value: string, isEn: boolean): string {
+  if (!isEn) return value;
+  return value
+    .replaceAll(" điểm", " points")
+    .replaceAll("/giây", "/sec")
+    .replaceAll("/lượt", "/request")
+    .replaceAll("/5 giây", "/5 sec")
+    .replaceAll("/ảnh", "/image");
 }
 
 type PricingRow = {
@@ -235,21 +275,26 @@ const imagePricingRows: ImagePricingRow[] = [
 
 export default function PricingPage() {
   const [activeTab, setActiveTab] = useState<"video" | "image">("video");
+  const { language } = useLanguage();
+  const isEn = language === "en";
 
   return (
     <Section className="pt-12 sm:pt-16">
       <div className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">Pricing</p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Bảng giá Kling API Video</h1>
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">{isEn ? "PRICING" : "BẢNG GIÁ"}</p>
+        <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+          {isEn ? "Kling API Pricing" : "Bảng giá Kling API Video"}
+        </h1>
         <p className="mt-4 text-base text-foreground/75 sm:text-lg">
-          Bảng giá dưới đây được cập nhật theo trang pricing chính thức của Kling cho nhóm Video API. Mighty Stone tư
-          vấn gói sử dụng phù hợp và hỗ trợ xuất hóa đơn VAT tại Việt Nam.
+          {isEn
+            ? "The pricing below is based on Kling’s official Video API pricing. Mighty Stone can advise on a suitable plan and provide VAT invoices in Vietnam."
+            : "Bảng giá dưới đây được cập nhật theo trang pricing chính thức của Kling cho nhóm Video API. Mighty Stone tư vấn gói sử dụng phù hợp và hỗ trợ xuất hóa đơn VAT tại Việt Nam."}
         </p>
         <p className="mt-2 text-sm text-foreground/60">
-          Nguồn tham chiếu: https://klingai.com/document-api/pricing/base/video
+          {isEn ? "Reference: " : "Nguồn tham chiếu: "}https://klingai.com/document-api/pricing/base/video
         </p>
         <p className="mt-1 text-sm text-foreground/60">
-          Quy đổi tham chiếu: 1 CNY = {CNY_TO_USD.toFixed(2)} USD
+          {isEn ? "Reference conversion: 1 CNY = " : "Quy đổi tham chiếu: 1 CNY = "}{CNY_TO_USD.toFixed(2)} USD
         </p>
       </div>
 
@@ -283,11 +328,11 @@ export default function PricingPage() {
               <table className="min-w-[980px] w-full border-collapse text-sm">
                 <thead>
                   <tr className="border-b border-border bg-surface-muted/65 text-left">
-                    <th className="px-4 py-3 font-semibold">Model</th>
-                    <th className="px-4 py-3 font-semibold">Hình thức tính phí</th>
-                    <th className="px-4 py-3 font-semibold">Tính năng</th>
-                    <th className="px-4 py-3 font-semibold">720P (USD)</th>
-                    <th className="px-4 py-3 font-semibold">1080P (USD)</th>
+                    <th className="px-4 py-3 font-semibold">{isEn ? "Model" : "Mô hình"}</th>
+                    <th className="px-4 py-3 font-semibold">{isEn ? "Billing" : "Hình thức tính phí"}</th>
+                    <th className="px-4 py-3 font-semibold">{isEn ? "Feature" : "Tính năng"}</th>
+                    <th className="px-4 py-3 font-semibold">720p (USD)</th>
+                    <th className="px-4 py-3 font-semibold">1080p (USD)</th>
                     <th className="px-4 py-3 font-semibold">4K (USD)</th>
                   </tr>
                 </thead>
@@ -295,11 +340,11 @@ export default function PricingPage() {
                   {videoPricingRows.map((row) => (
                     <tr key={`${row.model}-${row.feature}`} className="border-b border-border/70 align-top">
                       <td className="px-4 py-3 font-medium text-foreground/90">{row.model}</td>
-                      <td className="px-4 py-3 text-foreground/80">{row.billing}</td>
-                      <td className="px-4 py-3 text-foreground/80">{row.feature}</td>
-                      <td className="px-4 py-3 text-foreground/80">{row.price720}</td>
-                      <td className="px-4 py-3 text-foreground/80">{row.price1080}</td>
-                      <td className="px-4 py-3 text-foreground/80">{row.price4k}</td>
+                      <td className="px-4 py-3 text-foreground/80">{localizedLabel(row.billing, isEn)}</td>
+                      <td className="px-4 py-3 text-foreground/80">{localizedLabel(row.feature, isEn)}</td>
+                      <td className="px-4 py-3 text-foreground/80">{localizedPrice(row.price720, isEn)}</td>
+                      <td className="px-4 py-3 text-foreground/80">{localizedPrice(row.price1080, isEn)}</td>
+                      <td className="px-4 py-3 text-foreground/80">{localizedPrice(row.price4k, isEn)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -308,22 +353,22 @@ export default function PricingPage() {
           </div>
 
           <div className="mt-8 rounded-[var(--radius-box)] border border-border bg-surface p-6 sm:p-8">
-            <h2 className="text-2xl font-semibold tracking-tight">Dịch vụ bổ sung</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">{isEn ? "Additional services" : "Dịch vụ bổ sung"}</h2>
             <div className="mt-4 overflow-x-auto">
               <table className="min-w-[640px] w-full border-collapse text-sm">
                 <thead>
                   <tr className="border-b border-border bg-surface-muted/65 text-left">
-                    <th className="px-4 py-3 font-semibold">Dịch vụ</th>
-                    <th className="px-4 py-3 font-semibold">Hình thức tính phí</th>
-                    <th className="px-4 py-3 font-semibold">Đơn giá (USD)</th>
+                    <th className="px-4 py-3 font-semibold">{isEn ? "Service" : "Dịch vụ"}</th>
+                    <th className="px-4 py-3 font-semibold">{isEn ? "Billing" : "Hình thức tính phí"}</th>
+                    <th className="px-4 py-3 font-semibold">{isEn ? "Unit price (USD)" : "Đơn giá (USD)"}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {extraServices.map((item) => (
                     <tr key={item.service} className="border-b border-border/70">
                       <td className="px-4 py-3 font-medium text-foreground/90">{item.service}</td>
-                      <td className="px-4 py-3 text-foreground/80">{item.billing}</td>
-                      <td className="px-4 py-3 text-foreground/80">{item.price}</td>
+                      <td className="px-4 py-3 text-foreground/80">{localizedLabel(item.billing, isEn)}</td>
+                      <td className="px-4 py-3 text-foreground/80">{localizedPrice(item.price, isEn)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -331,8 +376,9 @@ export default function PricingPage() {
             </div>
 
             <p className="mt-4 text-sm text-foreground/65">
-              Lưu ý: giá và model có thể được Kling điều chỉnh theo từng thời điểm. Mighty Stone sẽ cập nhật nhanh nhất
-              khi có thay đổi và tư vấn phương án tối ưu theo nhu cầu sử dụng của bạn.
+              {isEn
+                ? "Note: Kling may update prices and models over time. Mighty Stone will share updates as soon as possible and help you find the best option for your needs."
+                : "Lưu ý: giá và model có thể được Kling điều chỉnh theo từng thời điểm. Mighty Stone sẽ cập nhật nhanh nhất khi có thay đổi và tư vấn phương án tối ưu theo nhu cầu sử dụng của bạn."}
             </p>
           </div>
         </>
@@ -344,19 +390,19 @@ export default function PricingPage() {
             <table className="min-w-[760px] w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b border-border bg-surface-muted/65 text-left">
-                  <th className="px-4 py-3 font-semibold">Model</th>
-                  <th className="px-4 py-3 font-semibold">Tính năng</th>
-                  <th className="px-4 py-3 font-semibold">Chất lượng</th>
-                  <th className="px-4 py-3 font-semibold">Đơn giá (USD)</th>
+                  <th className="px-4 py-3 font-semibold">{isEn ? "Model" : "Mô hình"}</th>
+                  <th className="px-4 py-3 font-semibold">{isEn ? "Feature" : "Tính năng"}</th>
+                  <th className="px-4 py-3 font-semibold">{isEn ? "Quality" : "Chất lượng"}</th>
+                  <th className="px-4 py-3 font-semibold">{isEn ? "Unit price (USD)" : "Đơn giá (USD)"}</th>
                 </tr>
               </thead>
               <tbody>
                 {imagePricingRows.map((row) => (
                   <tr key={`${row.model}-${row.feature}-${row.quality}`} className="border-b border-border/70 align-top">
                     <td className="px-4 py-3 font-medium text-foreground/90">{row.model}</td>
-                    <td className="px-4 py-3 text-foreground/80">{row.feature}</td>
+                    <td className="px-4 py-3 text-foreground/80">{localizedLabel(row.feature, isEn)}</td>
                     <td className="px-4 py-3 text-foreground/80">{row.quality}</td>
-                    <td className="px-4 py-3 text-foreground/80">{row.price}</td>
+                    <td className="px-4 py-3 text-foreground/80">{localizedPrice(row.price, isEn)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -364,8 +410,9 @@ export default function PricingPage() {
           </div>
 
           <div className="border-t border-border p-4 text-sm text-foreground/65 sm:p-6">
-            Lưu ý: bảng này được đối chiếu từ mục Image trong trang Pricing chính thức của Kling. Giá thực tế có thể thay
-            đổi theo cập nhật từ Kling.
+            {isEn
+              ? "Note: this table is based on the Image section of Kling’s official Pricing page. Actual prices may change as Kling updates its rates."
+              : "Lưu ý: bảng này được đối chiếu từ mục Image trong trang Pricing chính thức của Kling. Giá thực tế có thể thay đổi theo cập nhật từ Kling."}
           </div>
         </div>
       ) : null}
