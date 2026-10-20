@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Section } from "@/components/ui/section";
 
 const productKeys = [
@@ -55,179 +56,188 @@ const videoSlides = [
 
 const imageGallery = [
   {
-    title: "Citrus Micro Motion",
-    prompt: "A fruit still life of colorful berries and kiwi frozen in ice, soft studio lighting, glossy reflections, cinematic macro composition.",
-    aspect: "portrait",
-    background:
-      "radial-gradient(circle at 30% 20%, rgba(255, 214, 102, 0.25), transparent 18%), linear-gradient(135deg, rgba(13,23,31,0.9), rgba(74,55,31,0.5) 35%, rgba(16,24,34,0.9))",
+    title: "Image 1",
+    src: "/img-gen/product/img1.png",
+    prompt: `Bald muscular man in black leather jacket leaping from a speeding black sports car, firing a pistol, muzzle flash. Low-angle, motion blur, sparks, city skyline, golden hour smoke, teal and orange, photorealistic, cinematic.`,
   },
   {
-    title: "Golden Coastline",
-    prompt: "Sunset beach scene with warm golden light, soft horizon, cinematic color grading, minimal yet atmospheric environment.",
-    aspect: "landscape",
-    background:
-      "radial-gradient(circle at 50% 25%, rgba(255, 185, 94, 0.18), transparent 20%), linear-gradient(135deg, rgba(24,31,38,0.9), rgba(88,62,42,0.45) 38%, rgba(16,24,32,0.92))",
+    title: "Image 2",
+    src: "/img-gen/product/img2.png",
+    prompt: `Wild lily garden in European countryside, cream, pink and apricot lilies of varied sizes among wildflowers, ivy-covered stone cottage, wooden fence, rolling hills. Golden sunlight, soft haze, cottagecore, pastel, photorealistic, bokeh`,
   },
   {
-    title: "Refreshment Scene",
-    prompt: "A person holding a fruit drink outdoors in soft natural light, clean composition, lifestyle photography feel, warm summer mood.",
-    aspect: "portrait",
-    background:
-      "radial-gradient(circle at 65% 22%, rgba(242, 212, 148, 0.2), transparent 18%), linear-gradient(120deg, rgba(19,34,33,0.9), rgba(83,103,75,0.42) 42%, rgba(19,31,37,0.9))",
+    title: "Image 3",
+    src: "/img-gen/product/img3.png",
+    prompt: `Editorial fashion portrait of a beautiful young Korean woman, long straight black hair, flawless glowing dewy skin, soft nude lips, confident gaze at camera. Oversized black blazer, wide-leg black trousers, silver necklace and drop earrings. Sitting on a vintage wooden chair, leaning slightly forward. Warm golden-amber studio backdrop, dramatic side lighting. 85mm, ultra-detailed skin, high-end retouched photography`,
   },
   {
-    title: "City Transit",
-    prompt: "Cinematic underground transit scene, muted urban tones, a confident subject in motion, realistic silhouettes and soft depth.",
-    aspect: "landscape",
-    background:
-      "radial-gradient(circle at 55% 30%, rgba(255, 217, 166, 0.18), transparent 16%), linear-gradient(120deg, rgba(18,24,33,0.92), rgba(66,72,90,0.54) 38%, rgba(18,24,33,0.92))",
+    title: "Image 4",
+    src: "/img-gen/product/img4.png",
+    prompt: `Futuristic white smart room, glossy floor, sunset city window, floating neon blue holographic frames, pink glowing screens, cyberpunk, cinematic, 3D render`,
   },
   {
-    title: "Business Portrait",
-    prompt: "A man in a dark navy outfit standing in a bustling station, cinematic portrait with natural light and realistic expression.",
-    aspect: "portrait",
-    background:
-      "radial-gradient(circle at 35% 24%, rgba(255, 224, 174, 0.16), transparent 18%), linear-gradient(135deg, rgba(15,25,38,0.92), rgba(57,66,75,0.48) 40%, rgba(13,18,25,0.9))",
+    title: "Image 5",
+    src: "/img-gen/product/img5.png",
+    prompt: `Young Vietnamese man in his early 20s, . Six floating glowing glass product cards with "BUY" buttons around him: yellow bean bag, soccer cleat, smartphone, game console, wristwatch, yellow t-shirt.`,
   },
   {
-    title: "Loft Bedroom",
-    prompt: "A bright bedroom interior with clean linens, natural sunlight, warm minimal furniture, premium residential styling.",
-    aspect: "square",
-    background:
-      "radial-gradient(circle at 48% 18%, rgba(255, 240, 208, 0.18), transparent 18%), linear-gradient(135deg, rgba(123,126,120,0.65), rgba(230,223,211,0.4) 45%, rgba(94,88,79,0.56))",
+    title: "Image 6",
+    src: "/img-gen/product/img6.png",
+    prompt: `Vertical snack poster, tilted orange chip bag “FIRE CRUNCH”, “SPICY CHEESE”, “CRUNCHY SQUARE CHIPS”, label “Extra hot! Handle with care”. Lime-green background, flying square chips, chilies, leaves. White text “NEW FLAVOR” top, “CRUNCH” bottom. Realistic, studio lighting`,
   },
   {
-    title: "Modern Interior",
-    prompt: "A modern open-plan living room with warm wood tones, elegant furniture, soft shadows, and contemporary architecture.",
-    aspect: "portrait",
-    background:
-      "radial-gradient(circle at 60% 24%, rgba(240, 224, 202, 0.16), transparent 16%), linear-gradient(120deg, rgba(181,164,147,0.58), rgba(238,228,217,0.45) 38%, rgba(116,97,82,0.58))",
+    title: "Image 7",
+    src: "/img-gen/product/img7.png",
+    prompt: `Worm's-eye fisheye view from the ground, three Vietnamese Gen Z models stepping over the camera, giant chunky sneaker soles in foreground. Left: bob hair girl, beige cap, white hoodie, full-length beige wide-leg trousers. Right: guy, black cap, all-black outfit, hand behind head. Center: curly-haired girl, white headphones, black cargo pants, pink sneakers. Blue sky, clouds, power lines, 14mm, high contrast, sneaker campaign`,
   },
   {
-    title: "Rainy Window",
-    prompt: "A cinematic close-up of a face reflected in a rainy car window, moody story lighting, soft reflections, dramatic realism.",
-    aspect: "landscape",
-    background:
-      "radial-gradient(circle at 52% 28%, rgba(145, 176, 221, 0.14), transparent 16%), linear-gradient(135deg, rgba(26,35,49,0.9), rgba(72,82,96,0.52) 38%, rgba(16,22,30,0.9))",
+    title: "Image 8",
+    src: "/img-gen/product/img8.png",
+    prompt: `High-angle 24mm shot of four young people (two men, two women) clustered together, looking up at camera, arms pointing to center, strong foreshortening, high-key lighting, terracotta orange floor with concentric circle`,
   },
   {
-    title: "Man in the Rain",
-    prompt: "A mature man in a rain-soaked street scene, soft cinematic lighting, subtle textures, dramatic urban mood.",
-    aspect: "portrait",
-    background:
-      "radial-gradient(circle at 50% 28%, rgba(200, 213, 219, 0.14), transparent 16%), linear-gradient(120deg, rgba(51,54,60,0.95), rgba(104,115,117,0.5) 42%, rgba(22,25,29,0.92))",
+    title: "Image 9",
+    src: "/img-gen/product/img9.png",
+    prompt: `3D chrome typography of the word “LOOK”, glossy inflated letters, blue and cyan metallic reflections, bold stacked vertical layout tilted diagonally, light gray background, high detail, studio lighting`,
   },
   {
-    title: "Signal Light",
-    prompt: "A neon-lit urban portrait with soft glow, cinematic contrast, realistic face features, refined character study.",
-    aspect: "landscape",
-    background:
-      "radial-gradient(circle at 45% 18%, rgba(125, 228, 255, 0.16), transparent 14%), linear-gradient(135deg, rgba(18,26,35,0.94), rgba(56,74,94,0.5) 38%, rgba(12,18,26,0.9))",
+    title: "Image 10",
+    src: "/img-gen/product/img10.png",
+    prompt: `korean beauty sale poster, pastel pink background, glossy 3D inflated balloon text “SALE OFF UP TO 60%”, open pink gift box with ribbon bow, mock skincare products inside: pump bottle lotion, tube cream, amber dropper serums, generic minimal labels, soft studio lighting, clean e-commerce ad layout`,
   },
   {
-    title: "Civic Portrait",
-    prompt: "A detailed portrait of a person in a city environment, soft midday contrast, realism, subtle grain, polished composition.",
-    aspect: "square",
-    background:
-      "radial-gradient(circle at 32% 24%, rgba(250, 213, 144, 0.18), transparent 18%), linear-gradient(135deg, rgba(116,97,74,0.7), rgba(30,34,41,0.8) 40%, rgba(88,78,66,0.7))",
+    title: "Image 11",
+    src: "/img-gen/product/img11.png",
+    prompt: `Editorial food photography, three layered iced coffee drinks in ribbed glass tumblers with salted cream foam, cocoa, matcha and dark coffee layers, rustic dark wooden table, warm moody lighting, shallow depth of field, blurred woven textile background, tangerines as props, vertical composition, empty space at top, realistic, no text`,
   },
   {
-    title: "Ambient Corridor",
-    prompt: "A moody hallway with cinematic lighting, quiet stillness, surface reflections, and elegant architectural framing.",
-    aspect: "portrait",
-    background:
-      "radial-gradient(circle at 55% 16%, rgba(202, 223, 255, 0.14), transparent 16%), linear-gradient(135deg, rgba(29,32,38,0.94), rgba(69,83,90,0.5) 38%, rgba(15,18,24,0.94))",
+    title: "Image 12",
+    src: "/img-gen/product/img12.png",
+    prompt: `Vertical event poster, giant 3D inflated glossy typography like soft plastic toy blocks, headline stacked on 3 lines: “SAIGON / FLEA / MARKET”. , Green ribbon banner under the headline: “HAPPY PLAYGROUND” with decorations around.Pixar-like 3D render, soft studio lighting, correct spelling`,
   },
   {
-    title: "Desert Calm",
-    prompt: "A warm desert scene with earthy tones, cinematic light and shadow, calm composition, premium travel photography feel.",
-    aspect: "landscape",
-    background:
-      "radial-gradient(circle at 42% 20%, rgba(255, 191, 121, 0.2), transparent 18%), linear-gradient(135deg, rgba(96,60,38,0.78), rgba(196,142,75,0.38) 38%, rgba(33,23,18,0.82))",
+    title: "Image 13",
+    src: "/img-gen/product/img13.png",
+    prompt: `Vogue-style photo of a woman levitating in neon-green sweater, swirling neon liquid and floating headphones, electric cyan backdrop`,
   },
   {
-    title: "Crystal Detail",
-    prompt: "Macro shot of sparkling water and fruit textures, crisp reflections, high-detail material rendering, premium lifestyle still.",
-    aspect: "square",
-    background:
-      "radial-gradient(circle at 50% 18%, rgba(144, 235, 255, 0.2), transparent 18%), linear-gradient(135deg, rgba(19,38,49,0.9), rgba(84,144,160,0.36) 42%, rgba(19,30,42,0.88))",
+    title: "Image 14",
+    src: "/img-gen/product/img14.png",
+    prompt: `Giant fluffy orange tabby cat in extreme close-up foreground, paw stretched out like a selfie. Behind it, a Vietnamese woman with long black hair in a red silk áo dài leans forward, hands in cute cat-paw pose, sweet smile, bright eyes. Vietnamese street with old tube houses, motorbikes, tangled power lines, green trees, blue sky, sunny, film grain, fashion editorial`,
   },
   {
-    title: "Curious Stare",
-    prompt: "A portrait of a person looking into the distance with gentle expression, realistic skin tones and rich cinematic atmosphere.",
-    aspect: "portrait",
-    background:
-      "radial-gradient(circle at 60% 25%, rgba(224, 197, 160, 0.18), transparent 16%), linear-gradient(120deg, rgba(23,32,42,0.9), rgba(72,61,53,0.48) 40%, rgba(17,22,28,0.92))",
+    title: "Image 15",
+    src: "/img-gen/product/img15.png",
+    prompt: `Full body heavy-armored humanoid robot, glossy crimson red armor with black carbon accents, sharp angular plating, glowing blue eyes, clean chest plate with no logo, glowing orange lines along armor seams, rainy neon city street at night, low angle heroic stance, dramatic rim lighting, sparks and mist, cinematic, ultra detailed, photorealistic`,
   },
   {
-    title: "Warehouse Mood",
-    prompt: "An industrial interior with soft natural light, cinematic contrast, calm atmosphere, realistic surfaces and textures.",
-    aspect: "landscape",
-    background:
-      "radial-gradient(circle at 52% 24%, rgba(216, 180, 124, 0.18), transparent 18%), linear-gradient(135deg, rgba(68,58,52,0.86), rgba(161,145,124,0.38) 38%, rgba(25,24,24,0.9))",
+    title: "Image 16",
+    src: "/img-gen/product/img16.png",
+    prompt: `Cute 3D style cartoon boy, running pose, holding a magnifying glass in one hand, pointing a finger at the camera with the other (oversized hand in foreground), green knit beanie, blue sweater, ripped jeans, orange sneakers, yellow backpack, big smiling eyes, solid vibrant orange gradient background, soft studio lighting, high detail,`,
   },
   {
-    title: "Night Silhouette",
-    prompt: "A dramatic night portrait with soft motion blur and deep contrast, intimate storytelling still, elegant cinematic lighting.",
-    aspect: "portrait",
-    background:
-      "radial-gradient(circle at 40% 20%, rgba(147, 182, 255, 0.18), transparent 16%), linear-gradient(135deg, rgba(8,14,22,0.96), rgba(31,41,68,0.52) 38%, rgba(12,15,20,0.94))",
+    title: "Image 17",
+    src: "/img-gen/product/img17.png",
+    prompt: `Real-estate ad visual, stylish young Asian woman in sunglasses, cream crop top, red cargo pants, white sneakers, holding a tablet, walking on a globe-like curved street, miniature surreal city with a residential building on the left and a university gate on the right, blue sky, no text or logos`,
   },
   {
-    title: "Field View",
-    prompt: "An open landscape scene with warm golden grass, soft haze, cinematic composition, premium editorial style.",
-    aspect: "landscape",
-    background:
-      "radial-gradient(circle at 52% 18%, rgba(255, 217, 144, 0.18), transparent 18%), linear-gradient(135deg, rgba(75,94,58,0.82), rgba(164,135,92,0.4) 38%, rgba(28,36,24,0.88))",
+    title: "Image 18",
+    src: "/img-gen/product/img18.png",
+    prompt: `Full-body front view of a stylized 3D young woman, long wavy blonde hair, big eyes, gentle smile. Red oversized knit sweater, cream skinny pants, white sneakers. Light gray background, soft lighting, clean 3D render`,
   },
   {
-    title: "Quiet Detail",
-    prompt: "A minimal close-up of a product detail in natural light, ultra-clean composition, premium editorial still, realistic texture.",
-    aspect: "square",
-    background:
-      "radial-gradient(circle at 48% 24%, rgba(255, 219, 164, 0.16), transparent 16%), linear-gradient(135deg, rgba(118,111,101,0.75), rgba(229,216,200,0.42) 38%, rgba(98,90,74,0.68))",
+    title: "Image 19",
+    src: "/img-gen/product/img19.png",
+    prompt: `Young woman with freckles and wild flowing copper-red hair, oversized camel blazer, chunky gold rings. Low-angle ultra-wide fisheye shot, big foreground hand with strong perspective distortion, glass skyscrapers converging toward a bright blue sky, sun flare. Luxury fashion photography, realistic skin, sharp details. Large thin white serif title “FASHION`,
   },
   {
-    title: "Wild Iris",
-    prompt: "A macro still of a vivid iris with layered colors and highly realistic texture, cinematic detail, reflective surfaces.",
-    aspect: "square",
-    background:
-      "radial-gradient(circle at 50% 32%, rgba(136, 242, 255, 0.18), transparent 18%), linear-gradient(135deg, rgba(18,31,51,0.92), rgba(34,100,117,0.42) 42%, rgba(12,18,25,0.9))",
+    title: "Image 20",
+    src: "/img-gen/product/img20.png",
+    prompt: `Sci-fi poster, astronaut from behind in a cyan-lit spaceship corridor, tall window showing galaxy, planet, moon and sun flare, symmetrical, teal-blue, volumetric light, empty space at bottom.`,
+  },
+  {
+    title: "Image 21",
+    src: "/img-gen/product/img21.png",
+    prompt: `3D advertising poster, cobalt blue background, metallic claw-machine grabber dropping from top holding a snack box, pile of colorful snack boxes below in red, purple, yellow and navy, each showing only a large bold white number (1-9), no other text or logos, glossy studio lighting, playful surreal product photography, white uppercase headline “TASTE THE PLAY.” at top.`,
+  },
+  {
+    title: "Image 22",
+    src: "/img-gen/product/img22.png",
+    prompt: `Vintage orange VW camper van on a winding road in the Dolomites, jagged snow-streaked peaks, green alpine meadows, small village in the valley, overcast soft light, travel photography, photorealistic`,
+  },
+  {
+    title: "Image 23",
+    src: "/img-gen/product/img23.png",
+    prompt: `Cute 3D isometric miniature cozy living room diorama, rounded cream curved wall with arched window, peach-orange armchair and cream loveseat, round wooden coffee table, small shelf with books and succulents, round apricot rug, soft clay texture, pastel palette of peach, orange, butter yellow and cream with small sage-green accents, warm golden background, soft studio lighting`,
+  },
+  {
+    title: "Image 24",
+    src: "/img-gen/product/img24.png",
+    prompt: `Indochine-style living room with patterned cement floor tiles, rattan armchairs, wooden louvered shutters, ceramic vases from Bát Tràng, indoor plants, soft daylight, interior design magazine photo`,
   },
 ] as const;
 
-const galleryRows = [
-  [
-    { ...imageGallery[0], widthClass: "w-[150px]" },
-    { ...imageGallery[1], widthClass: "w-[260px]" },
-    { ...imageGallery[2], widthClass: "w-[150px]" },
-    { ...imageGallery[3], widthClass: "w-[260px]" },
-    { ...imageGallery[4], widthClass: "w-[150px]" },
-    { ...imageGallery[5], widthClass: "w-[210px]" },
-    { ...imageGallery[6], widthClass: "w-[150px]" },
-    { ...imageGallery[7], widthClass: "w-[260px]" },
-    { ...imageGallery[8], widthClass: "w-[150px]" },
-    { ...imageGallery[9], widthClass: "w-[260px]" },
-  ],
-  [
-    { ...imageGallery[10], widthClass: "w-[210px]" },
-    { ...imageGallery[11], widthClass: "w-[150px]" },
-    { ...imageGallery[12], widthClass: "w-[260px]" },
-    { ...imageGallery[13], widthClass: "w-[150px]" },
-    { ...imageGallery[14], widthClass: "w-[260px]" },
-    { ...imageGallery[15], widthClass: "w-[150px]" },
-    { ...imageGallery[16], widthClass: "w-[210px]" },
-    { ...imageGallery[17], widthClass: "w-[150px]" },
-    { ...imageGallery[18], widthClass: "w-[260px]" },
-    { ...imageGallery[19], widthClass: "w-[210px]" },
-  ],
-] as const;
+const galleryRowHeight = 220;
+const galleryImageSizes: Record<(typeof imageGallery)[number]["src"], readonly [number, number]> = {
+  "/img-gen/product/img1.png": [242, 182],
+  "/img-gen/product/img2.png": [239, 317],
+  "/img-gen/product/img3.png": [241, 427],
+  "/img-gen/product/img4.png": [476, 269],
+  "/img-gen/product/img5.png": [424, 319],
+  "/img-gen/product/img6.png": [386, 512],
+  "/img-gen/product/img7.png": [387, 513],
+  "/img-gen/product/img8.png": [294, 222],
+  "/img-gen/product/img9.png": [283, 283],
+  "/img-gen/product/img10.png": [272, 361],
+  "/img-gen/product/img11.png": [272, 361],
+  "/img-gen/product/img12.png": [254, 191],
+  "/img-gen/product/img13.png": [280, 496],
+  "/img-gen/product/img14.png": [308, 409],
+  "/img-gen/product/img15.png": [284, 426],
+  "/img-gen/product/img16.png": [294, 521],
+  "/img-gen/product/img17.png": [294, 390],
+  "/img-gen/product/img18.png": [262, 464],
+  "/img-gen/product/img19.png": [268, 202],
+  "/img-gen/product/img20.png": [398, 300],
+  "/img-gen/product/img21.png": [426, 426],
+  "/img-gen/product/img22.png": [433, 433],
+  "/img-gen/product/img23.png": [424, 319],
+  "/img-gen/product/img24.png": [439, 583],
+};
+
+const galleryRows = [imageGallery.slice(0, 12), imageGallery.slice(12)].map((row) =>
+  row.map((item) => {
+    const [imageWidth, imageHeight] = galleryImageSizes[item.src];
+    return {
+      ...item,
+      frameWidth: Math.round((galleryRowHeight * imageWidth) / imageHeight),
+    };
+  }),
+);
 
 const galleryTrackRows = galleryRows.map((row) => [...row, ...row]);
 
 export default function ProductsPage() {
   const [videoIndex, setVideoIndex] = useState(0);
+  const [selectedImage, setSelectedImage] = useState<(typeof imageGallery)[number] | null>(null);
   const currentVideo = videoSlides[videoIndex];
+
+  useEffect(() => {
+    if (!selectedImage) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedImage]);
 
   const handlePrev = () => {
     setVideoIndex((prev) => (prev === 0 ? videoSlides.length - 1 : prev - 1));
@@ -252,7 +262,7 @@ export default function ProductsPage() {
         {productKeys.map((product) => (
           <div key={product.title} className="rounded-[var(--radius-box)] border border-border bg-surface p-4 shadow-sm sm:p-5">
             <div
-              className={`relative aspect-[16/10] overflow-hidden rounded-lg border bg-surface-muted ${product.title === "AI Video" || product.title === "Video Editor" ? "border-border" : "border-dashed border-border"}`}
+              className={`relative aspect-[16/10] overflow-hidden rounded-lg border bg-surface-muted ${product.title === "AI Video" || product.title === "AI Image" || product.title === "Video Editor" ? "border-border" : "border-dashed border-border"}`}
             >
               {product.title === "AI Video" || product.title === "Video Editor" ? (
                 <video
@@ -269,6 +279,14 @@ export default function ProductsPage() {
                     type="video/mp4"
                   />
                 </video>
+              ) : product.title === "AI Image" ? (
+                <Image
+                  src="/img-gen/product/img14.png"
+                  alt="A woman in a red áo dài posing with a cat"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-cover object-[center_42%]"
+                />
               ) : null}
             </div>
             <h2 className="mt-4 text-2xl font-semibold tracking-tight">{product.title}</h2>
@@ -404,28 +422,29 @@ export default function ProductsPage() {
               {galleryTrackRows.map((row, rowIndex) => (
                 <div key={`gallery-row-${rowIndex}`} className="marquee-track flex w-max gap-[6px]">
                   {row.map((item, index) => (
-                    <div
+                    <button
                       key={`${item.title}-${rowIndex}-${index}`}
-                      className={`group relative h-[220px] shrink-0 overflow-hidden rounded-[4px] border border-white/10 bg-black/40 ${item.widthClass}`}
+                      type="button"
+                      aria-label={`Preview ${item.title}`}
+                      aria-haspopup="dialog"
+                      onClick={() => setSelectedImage(item)}
+                      className="group relative h-[220px] shrink-0 overflow-hidden rounded-[4px] border border-white/10 bg-black/40 p-0 text-left"
+                      style={{ width: item.frameWidth }}
                     >
-                      <div
-                        className="relative h-full w-full overflow-hidden rounded-[4px]"
-                        style={{
-                          background: item.background,
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.14),transparent_16%),linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.28)_55%,rgba(0,0,0,0.7)_100%)]" />
-                        <div className="absolute inset-x-3 bottom-3 h-14 rounded-full bg-white/5 blur-2xl" />
-                        <div className="absolute left-3 top-3 h-7 w-7 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm" />
-                        <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-black/70 to-transparent" />
-                      </div>
+                      <Image
+                        src={item.src}
+                        alt={item.title}
+                        fill
+                        sizes={`${item.frameWidth}px`}
+                        className="object-contain"
+                      />
 
                       <div className="pointer-events-none absolute inset-x-0 bottom-0 p-2 opacity-0 transition duration-300 group-hover:opacity-100">
                         <div className="rounded-md border border-white/10 bg-black/55 p-2 text-[10px] leading-relaxed text-white/80 backdrop-blur-sm">
                           {item.prompt}
                         </div>
                       </div>
-                    </div>
+                    </button>
                   ))}
                 </div>
               ))}
@@ -461,6 +480,37 @@ export default function ProductsPage() {
               <span aria-hidden="true">→</span>
             </button>
           </div>
+
+          {selectedImage && (
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label={`${selectedImage.title} preview`}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm sm:p-8"
+              onClick={(event) => {
+                if (event.target === event.currentTarget) setSelectedImage(null);
+              }}
+            >
+              <button
+                type="button"
+                aria-label="Close image preview"
+                onClick={() => setSelectedImage(null)}
+                className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/60 text-2xl text-white transition hover:bg-white/15"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div className="relative h-full max-h-[90vh] w-full max-w-6xl">
+                <Image
+                  src={selectedImage.src}
+                  alt={selectedImage.title}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </div>
+          )}
         </section>
 
         {productKeys
