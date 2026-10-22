@@ -292,9 +292,9 @@ export default function ProductsPage() {
         {productKeys.map((product) => (
           <div key={product.title} className="rounded-[var(--radius-box)] border border-border bg-surface p-4 shadow-sm sm:p-5">
             <div
-              className={`relative aspect-[16/10] overflow-hidden rounded-lg border bg-surface-muted ${product.title === "AI Video" || product.title === "AI Image" || product.title === "Video Editor" ? "border-border" : "border-dashed border-border"}`}
+              className="relative aspect-[16/10] overflow-hidden rounded-lg border border-border bg-surface-muted"
             >
-              {product.title === "AI Video" || product.title === "Video Editor" ? (
+              {product.title !== "AI Image" ? (
                 <video
                   autoPlay
                   loop
@@ -305,7 +305,13 @@ export default function ProductsPage() {
                   className="absolute inset-0 h-full w-full object-cover"
                 >
                   <source
-                    src={product.title === "Video Editor" ? "/footages/market.mp4" : "/footages/worker-finds-something_cut.mp4"}
+                    src={
+                      product.title === "Motion Control"
+                        ? "/footages/motion-control.mp4"
+                        : product.title === "Video Editor"
+                          ? "/footages/market.mp4"
+                          : "/footages/worker-finds-something_cut.mp4"
+                    }
                     type="video/mp4"
                   />
                 </video>
@@ -557,7 +563,24 @@ export default function ProductsPage() {
           .map((product) => (
             <section key={`${product.title}-detail`} className="rounded-[var(--radius-box)] border border-border bg-surface p-4 shadow-sm sm:p-6">
               <div className={`grid gap-6 lg:items-center ${product.title === "Motion Control" ? "lg:grid-cols-[1.2fr_1fr]" : "lg:grid-cols-[1.1fr_1.9fr]"}`}>
-                <div className={`${product.title === "Motion Control" ? "aspect-video" : "aspect-[16/10]"} rounded-lg border border-dashed border-border bg-surface-muted`} />
+                <div
+                  className={`relative overflow-hidden rounded-lg border border-border bg-surface-muted ${
+                    product.title === "Motion Control" ? "aspect-video" : "aspect-[16/10] border-dashed"
+                  }`}
+                >
+                  {product.title === "Motion Control" && (
+                    <video
+                      src="/footages/motion-control.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
+                      aria-hidden="true"
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  )}
+                </div>
 
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/55">{isEn ? "PRODUCT" : "SẢN PHẨM"}</p>
